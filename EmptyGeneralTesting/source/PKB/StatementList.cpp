@@ -1,6 +1,14 @@
 #include "StatementList.h"
 
-void StatementList::addStatement(Statement stmt) {
-	statements.push_back(stmt);
-	stmt.setStmtLst(*this);
+StatementList::StatementList(Statement parent) {
+	statementList = *new list<Statement>();
+	parentStatement = parent;
+}
+
+void StatementList::addStatement(int stmtNo) {
+	statementList.insert(new Statement(stmtNo, &parentStatement, &curr));
+}
+
+Statement StatementList::getParent() {
+	return parentStatement;
 }

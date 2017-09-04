@@ -4,7 +4,7 @@ using namespace std;
 
 #include "Procedure.h"
 /*
- * Abstract representation of the commonalities of all types of statements 
+  Abstract representation of the commonalities of all types of statements 
  */
 class Statement {
 
@@ -13,20 +13,22 @@ protected:
 	Statement* follow;
 	Statement* followBy;
 	Statement* parentStatement;
-	Procedure parentProcedure;
+	//Procedure parentProcedure;
 
 
 public:
-	Statement(int stmtNo, Statement parent, Statement following);
-	Statement(int stmtNo, Procedure parent, Statement following);
+	Statement();
+	Statement(int stmtNo, Statement *parent, Statement *following);
+	//Statement(int stmtNo, Procedure parent, Statement *following);
 	void setFollowedBy(Statement followBy);
 	Statement getFollow();
-	int isFollow(int stmtNo);
+	bool isFollow(int stmtNo);
 	Statement getFollowBy();
-	int isFollowBy(int stmtNo);
+	bool isFollowBy(int stmtNo);
 	Statement getParentStatement();
 	Procedure getParentProcedure();
-	int isParent(int stmtNo);
-	int isParent(string proName);
+	bool isParent(int stmtNo);
+	bool isParent(string proName);
 	int getStmtNo();
+	bool operator<(Statement other);
 };

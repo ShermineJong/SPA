@@ -1,14 +1,18 @@
 #pragma once
-#include <vector>
+#include <list>
 using namespace std;
 
 #include "Statement.h"
 
 class StatementList {
 private:
-	vector<Statement> statements;
+	list<Statement> statementList;
+	Statement parentStatement;
+	//Procedure parentProcedure;
+	Statement curr;
+
 public:
-	StatementList();
-	~StatementList();
-	void addStatement(Statement stmt);
+	StatementList(Statement parent);
+	void addStatement(int stmtNo);
+	Statement getParent();
 };
