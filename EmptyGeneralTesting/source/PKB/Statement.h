@@ -1,20 +1,32 @@
 #pragma once
 #include <string>
 using namespace std;
-#include "StatementList.h"
+
+#include "Procedure.h"
 /*
-Currently just a dummy Statement class implemented for the purpose of
-trying Unit Testing.
-Full implementation to be done later by Shermine.
-*/
+ * Abstract representation of the commonalities of all types of statements 
+ */
 class Statement {
+
 protected:
-	int index;
-	string contentStatement;
-	StatementList stmtLst;
+	int stmtNo;
+	Statement* follow;
+	Statement* followBy;
+	Statement* parentStatement;
+	Procedure parentProcedure;
+
+
 public:
-	Statement();
-	Statement(int i, string content);
-	~Statement();
-	void setStmtLst(StatementList stmtList);
+	Statement(int stmtNo, Statement parent, Statement following);
+	Statement(int stmtNo, Procedure parent, Statement following);
+	void setFollowedBy(Statement followBy);
+	Statement getFollow();
+	int isFollow(int stmtNo);
+	Statement getFollowBy();
+	int isFollowBy(int stmtNo);
+	Statement getParentStatement();
+	Procedure getParentProcedure();
+	int isParent(int stmtNo);
+	int isParent(string proName);
+	int getStmtNo();
 };
